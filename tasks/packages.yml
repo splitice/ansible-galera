@@ -9,6 +9,6 @@
     cache_valid_time: 11400
   with_items:
     - python-mysqldb
-    - mariadb-galera-server
+    - mariadb-server
     - galera
     - rsync
