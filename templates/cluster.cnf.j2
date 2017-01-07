@@ -11,7 +11,7 @@ wsrep_node_name="{{ ansible_fqdn }}"
 {% if galera_bootstrap %}
 wsrep_cluster_address=gcomm://
 {% else %}
-wsrep_cluster_address=gcomm://{{ ",".join(groups['database']|map('extract', hostvars, 'galera_bind_address')) }}
+wsrep_cluster_address=gcomm://{{ ",".join(groups['database'] rejectattr('galera_bind_address', 'equalto', galera_bind_address)|map('extract', hostvars, 'galera_bind_address')|) }}
 {% endif %}
 
 wsrep_node_address={{galera_bind_address}}
