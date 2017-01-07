@@ -1,6 +1,9 @@
 ---
 # Configure system users access to MariaDB
 
+- name: Ensure mysql is running
+  service: name=mysql state=started
+
 - name: Configure MariaDB access for Ansible mysql_user module
   file: src=/etc/mysql/debian.cnf dest=/root/.my.cnf owner=root group=root state=link force=yes
 
