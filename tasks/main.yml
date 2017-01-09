@@ -10,5 +10,9 @@
 - include: secure.yml
 - include: config.yml
 
+- shell: galera_new_cluster
+  when: galera_bootstrap
+  sudo: true
+
 - meta: flush_handlers
 
