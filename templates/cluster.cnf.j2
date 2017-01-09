@@ -1,6 +1,7 @@
 #{{ ansible_managed }}
 
 [mysqld]
+wsrep_on=ON
 wsrep_provider="/usr/lib/galera/libgalera_smm.so"
 wsrep_provider_options="gcache.size=2G"
 wsrep_cluster_name="{{ galera_cluster_name }}"
