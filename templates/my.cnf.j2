@@ -53,6 +53,19 @@ innodb_buffer_pool_size         = 50M
 innodb_log_buffer_size          = 64M
 innodb_log_file_size            = 5M
 
+wsrep_on=ON
+wsrep_provider="/usr/lib/galera/libgalera_smm.so"
+wsrep_provider_options="gcache.size=2G"
+wsrep_cluster_name="{{ galera_cluster_name }}"
+wsrep_sst_method=rsync
+wsrep_sst_auth={{ galera_cluster_user }}:{{ galera_cluster_password }}
+wsrep_node_name="{{ ansible_fqdn }}"
+
+wsrep_cluster_address="gcomm://{{ ",".join(groups['database'] | map('extract', hostvars, 'galera_bind_address')) }}"
+
+wsrep_node_address={{galera_bind_address}}
+wsrep_sync_wait=1
+
 [mysqldump]
 quick
 quote-names
