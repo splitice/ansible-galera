@@ -10,6 +10,9 @@
 - include: secure.yml
 - include: config.yml
 
+- name: Ensure permissions are correct
+  shell: chown mysql:mysql /var/lib/mysql -R
+
 - shell: galera_new_cluster
   when: galera_bootstrap
   sudo: true
