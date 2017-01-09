@@ -5,6 +5,8 @@
   mysql_db:
     name: test
     state: absent
+  retries: 3
+  delay: 2
 
 - name: deny remote root access
   mysql_user:
