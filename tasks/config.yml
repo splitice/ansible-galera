@@ -3,7 +3,7 @@
 
 - name: Galera configuration file
   template: src=cluster.cnf.j2 dest=/etc/mysql/conf.d/cluster.cnf owner=root group=root mode=0640
-  notify: restart mysql
+  notify: restart mysql {{galera_bootstrap_type}}
 
 - name: MariaDB configuration file
   template: src=my.cnf.j2 dest=/etc/mysql/my.cnf owner=root group=root mode=0644
