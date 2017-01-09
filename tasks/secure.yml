@@ -20,3 +20,5 @@
     name: ""
     state: absent
 
+- name: Set MariaDB root password for local login
+  mysql_user: name=root password={{ galera_root_password }} host=localhost state=present
