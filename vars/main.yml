@@ -1,0 +1,3 @@
+---
+
+galera_bootstrap_type: "{{'bootstrap' if galera_bootstrap or 'normal'}}"

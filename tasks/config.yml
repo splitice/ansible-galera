@@ -7,7 +7,7 @@
 
 - name: MariaDB configuration file
   template: src=my.cnf.j2 dest=/etc/mysql/my.cnf owner=root group=root mode=0644
-  notify: restart mysql
+  notify: restart mysql {{galera_bootstrap_type}}
 
 - name: Cluster check script
   template: src=usr/local/bin/pyclustercheck.j2 dest=/usr/local/bin/pyclustercheck owner=root group=root mode=0700

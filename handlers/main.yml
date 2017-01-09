@@ -1,8 +1,11 @@
 ---
 # Handlers for MariaDB
 
-- name: restart mysql
+- name: restart mysql normal
   service: name=mysql state=restarted
+
+- name: restart mysql bootstrap
+  shell: systemctl stop mysql; galera_new_cluster
 
 - name: start mysql
   service: name=mysql state=started
