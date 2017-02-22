@@ -4,12 +4,6 @@
 - name: Ensure mysql is running
   service: name=mysql state=started
 
-- name: Configure MariaDB access for Ansible mysql_user module
-  file: src=/etc/mysql/debian.cnf dest=/root/.my.cnf owner=root group=root state=link force=yes
-
 - name: Configure MariaDB root defaults-file
   template: src=root/my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0640 force=yes
-
-- name: Configure defaults-file for debian-sys-maint service user
-  template: src=debian.cnf.j2 dest=/etc/mysql/debian.cnf owner=root group=root mode=0640
 
