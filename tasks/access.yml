@@ -3,6 +3,18 @@
 
 - name: Ensure mysql is running
   service: name=mysql state=started
+  when: galera_bootstrap == False
+
+- name: is mysql already running?
+  shell: service mysql status warn=false
+  register: _svc_mysql
+  failed_when: _svc_mysql.rc != 0 and ("unrecognized service" not in _svc_mysql.stderr)
+  when: "{{galera_bootstrap}}"
+  ignore_errors: true
+
+- name: Ensure mysql is running
+  shell: galera_new_cluster
+  when: "galera_bootstrap and _svc_mysql.rc == 0"
 
 - name: Configure MariaDB root defaults-file
   template: src=root/my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0640 force=yes
